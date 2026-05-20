@@ -1,10 +1,18 @@
-Multi-Agent Stock Forecasting System via Time Series
+# Multi-Agent Stock Forecasting System via Time Series
 
-About
-Fin-Agent is an intelligent multi-agent stock analysis system that monitors stocks for unusual price movements, identifies the news driving them, analyzes market sentiment, forecasts price direction, and generates transparent BUY/HOLD/SELL signals — all while explaining every step of its reasoning in plain English so the user always knows exactly why a decision was made.
+## About
 
-How It Works
-Fin-Agent runs a 4-agent pipeline where each agent has one job:
+**Fin-Agent** is an intelligent multi-agent stock analysis system that monitors stocks for unusual price movements, identifies the news driving them, analyzes market sentiment, forecasts price direction, and generates transparent **BUY / HOLD / SELL** signals.
+
+The system explains every decision in plain English, allowing users to understand exactly why a prediction or recommendation was made.
+
+---
+
+## System Architecture
+
+Fin-Agent operates through a 4-agent pipeline where each agent performs a dedicated task:
+
+```text
 [Agent 1: Anomaly Detector]
         ↓
 [Agent 2: News Fetcher]
@@ -12,41 +20,106 @@ Fin-Agent runs a 4-agent pipeline where each agent has one job:
 [Agent 3: Sentiment Analyzer]
         ↓
 [Agent 4: Signal Generator + Explainer]
-Agent 1 — Anomaly Detector
-Scans price data using Z-score, RSI, Bollinger Bands, and EMA to flag unusual stock movements.
-Agent 2 — News Fetcher
-Pulls relevant headlines from 6 news APIs the moment an anomaly is detected.
-Agent 3 — Sentiment Analyzer
-Runs FinBERT (a finance-specific NLP model) on fetched headlines to determine market sentiment.
-Agent 4 — Signal Generator
-Combines technical anomaly signals + sentiment scores to produce a final BUY/HOLD/SELL decision with confidence threshold and supporting headlines explaining the call.
+```
 
-Stocks Covered
-TickerCompanyTSLATeslaNVDANVIDIAAAPLAppleMETAMetaAMZNAmazon
+---
 
-Key Results
+## Agents Overview
 
-+0.089 F1-score improvement over price-only baseline
-Anomaly days showed 3.5× higher absolute returns
-SHAP & LIME explainability on every signal
-Granger causality validation between news sentiment and price movement
+### Agent 1 — Anomaly Detector
 
+Detects unusual stock market behavior using technical indicators such as:
 
-Tech Stack
-Python | FinBERT | SHAP | LIME | Pandas | NumPy | REST APIs
+* Z-Score
+* RSI (Relative Strength Index)
+* Bollinger Bands
+* EMA (Exponential Moving Average)
 
-Features
+---
 
-🔍 Technical anomaly detection (Z-score, RSI, Bollinger Bands, EMA)
-📰 Real-time news fetching across 6 APIs
-🧠 FinBERT NLP sentiment analysis
-📊 Granger causality validation
-💡 SHAP & LIME explainability on every decision
-🟢 Transparent BUY/HOLD/SELL signals with confidence scores
-📝 Plain English reasoning for every call
+### Agent 2 — News Fetcher
 
+Fetches relevant financial news headlines from multiple news APIs whenever an anomaly is detected.
 
-Project Structure
+---
+
+### Agent 3 — Sentiment Analyzer
+
+Uses **FinBERT**, a finance-specific NLP model, to analyze market sentiment from fetched headlines.
+
+---
+
+### Agent 4 — Signal Generator
+
+Combines:
+
+* Technical anomaly signals
+* News sentiment scores
+
+to generate a final:
+
+* BUY
+* HOLD
+* SELL
+
+decision along with confidence scores and explainable reasoning.
+
+---
+
+## Stocks Covered
+
+| Ticker | Company |
+| ------ | ------- |
+| TSLA   | Tesla   |
+| NVDA   | NVIDIA  |
+| AAPL   | Apple   |
+| META   | Meta    |
+| AMZN   | Amazon  |
+
+---
+
+## Key Results
+
+* Achieved **+0.089 F1-score improvement** over a price-only baseline model
+* Anomaly days showed **3.5× higher absolute returns**
+* Integrated **SHAP** and **LIME** explainability for every prediction
+* Validated relationships between sentiment and price movement using **Granger Causality Testing**
+
+---
+
+## Tech Stack
+
+* Python
+* FinBERT
+* SHAP
+* LIME
+* Pandas
+* NumPy
+* REST APIs
+
+---
+
+## Features
+
+* Technical anomaly detection using:
+
+  * Z-Score
+  * RSI
+  * Bollinger Bands
+  * EMA
+* Real-time financial news fetching from multiple APIs
+* FinBERT-based NLP sentiment analysis
+* Granger causality validation
+* SHAP & LIME explainability integration
+* Transparent BUY / HOLD / SELL signals
+* Confidence scoring for predictions
+* Plain English reasoning for every decision
+
+---
+
+## Project Structure
+
+```text
 fin-agent/
 │
 ├── agents/
@@ -64,21 +137,39 @@ fin-agent/
 │
 ├── requirements.txt
 └── README.md
+```
 
-⚠️ Adjust the folder structure above to match your actual repo before publishing.
+> Note: Adjust the folder structure above to match your actual repository before publishing.
 
+---
 
-Installation
-bashgit clone https://github.com/tstnikhil4356/FinAgent
+## Installation
+
+```bash
+git clone https://github.com/tstnikhil4356/FinAgent
 cd fin-agent
 pip install -r requirements.txt
+```
 
-Usage
-bashpython main.py --ticker TSLA
+---
 
-Disclaimer
+## Usage
 
-This project is built for educational and research purposes only. It is not financial advice. Do not make real investment decisions based on this system.
+```bash
+python main.py --ticker TSLA
+```
 
+---
 
-Built by Nikhil Singh — MSc Data Science, NMIMS Mumbai
+## Disclaimer
+
+This project is intended for educational and research purposes only.
+
+It should not be considered financial advice. Do not make real investment decisions based on the predictions or outputs generated by this system.
+
+---
+
+## Author
+
+**Nikhil Singh**
+MSc Data Science — NMIMS Mumbai
