@@ -1,4 +1,4 @@
-# Multi-Agent Stock Forecasting System via Time Series
+# Multi-Agent Stock Forecasting System via Time Series Statmodels
 
 ## About
 
